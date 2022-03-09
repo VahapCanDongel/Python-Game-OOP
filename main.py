@@ -1,4 +1,3 @@
-from tkinter import LEFT
 import pygame
 pygame.init()
 
