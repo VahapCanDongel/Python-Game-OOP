@@ -3,6 +3,8 @@ pygame.init()
 
 screen = pygame.display.set_mode([1000, 500])
 
+
+
 class Player:
     def __init__(self, image, x, y):
         self.image = pygame.image.load(image)
@@ -22,7 +24,7 @@ class Player:
         self.y -= speed
         
 
-
+# Alien can be inherited from player. 
 class Alien:
     def __init__(self, image, x, y):
         self.image = pygame.image.load(image)
@@ -51,7 +53,6 @@ class Alien:
 alien1 = Alien("assets/alien.png", 100, 100)
 
 class Game:
-      
     def __init__(self, screen_height, screen_width, screen_title):
         self.screen_height = screen_height
         self.screen_width = screen_width
@@ -72,7 +73,6 @@ class Game:
                     
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RIGHT:
-                        print("key pressed")
                         alien1.move_right(4)
                         
                         
