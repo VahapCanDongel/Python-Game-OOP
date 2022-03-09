@@ -3,11 +3,6 @@ pygame.init()
 
 screen = pygame.display.set_mode([1000, 500])
 
-alien = pygame.image.load("assets/alien.png")
-alien_x = 700
-alien_y = 250
-
-
 class Player:
     def __init__(self, image, x, y):
         self.image = pygame.image.load(image)
@@ -52,33 +47,45 @@ class Alien:
     def get_y(self):
         return self.y
 
+
 alien1 = Alien("assets/alien.png", 100, 100)
 
-keys = pygame.key.get_pressed()
+class Game:
+      
+    def __init__(self, screen_height, screen_width, screen_title):
+        self.screen_height = screen_height
+        self.screen_width = screen_width
+        self.screen_title = screen_title
+    
+    
+    def set_display(self):
+        pygame.display.set_mode([self.screen_height, self.screen_width])
+    
+    def run(self, isGameRunning = True):
+        while isGameRunning:
 
-gamerunning = True
-while gamerunning:
+            screen.fill((20, 22, 41))
 
-    screen.fill((20, 22, 41))
-
-
-    # Did the user click the window close button?
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            gamerunning = False 
-            
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RIGHT:
-                print("key pressed")
-                alien1.move_right(4)
-                
-                
-                
-    screen.blit(alien1.image, (alien1.get_x(), alien1.get_y()))        
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    isGameRunning = False 
+                    
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_RIGHT:
+                        print("key pressed")
+                        alien1.move_right(4)
+                        
+                        
+                        
+            screen.blit(alien1.image, (alien1.get_x(), alien1.get_y()))        
 
 
-    # Flip the display
-    pygame.display.flip()
 
-# Done! Time to quit.
-pygame.quit()
+            pygame.display.flip()
+        
+        
+        
+        
+if __name__ == "__main__":
+    game = Game(1000, 500, "Game Title")
+    game.run()
