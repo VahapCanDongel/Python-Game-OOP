@@ -3,29 +3,8 @@ pygame.init()
 
 screen = pygame.display.set_mode([1000, 500])
 
-
-
-class Player:
-    def __init__(self, image, x, y):
-        self.image = pygame.image.load(image)
-        self.x = x
-        self.y = y
-    
-    def move_right(self, speed):
-        self.x += speed
         
-    def move_left(self, speed):
-        self.x -= speed
-        
-    def move_up(self, speed):
-        self.y += speed
-    
-    def move_down(self, speed):
-        self.y -= speed
-        
-
-# Alien can be inherited from player. 
-class Alien:
+class Charactor:
     def __init__(self, image, x, y):
         self.image = pygame.image.load(image)
         self.x = x
@@ -48,6 +27,15 @@ class Alien:
     
     def get_y(self):
         return self.y
+        
+
+# Alien can be inherited from player. 
+class Alien(Charactor):
+    def __init__(self, image, x, y):
+        super().__init__(image, x, y)
+
+
+
 
 
 alien1 = Alien("assets/alien.png", 100, 100)
