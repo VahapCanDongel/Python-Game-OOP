@@ -34,11 +34,17 @@ class Alien(Charactor):
     def __init__(self, image, x, y):
         super().__init__(image, x, y)
 
+    
+class Player(Charactor):
+    def __init__(self, image, x, y):
+        super().__init__(image, x, y)
 
 
 
 
 alien1 = Alien("assets/alien.png", 100, 100)
+player1 = Player("assets/spaceship.png", 700, 250)
+
 
 class Game:
     def __init__(self, screen_height, screen_width, screen_title):
@@ -66,7 +72,7 @@ class Game:
                         
                         
             screen.blit(alien1.image, (alien1.get_x(), alien1.get_y()))        
-
+            screen.blit(player1.image, (player1.get_x(), player1.get_y()))
 
 
             pygame.display.flip()
