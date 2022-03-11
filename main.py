@@ -38,17 +38,24 @@ class Player(Charactor):
     def __init__(self, image, x, y):
         super().__init__(image, x, y)
 
-player1 = Player("assets/spaceship.png", 700, 250)
-
-
-alien_1 = Alien("assets/alien.png", 100, 100)
-alien_2 = Alien("assets/alien.png", 150, 100)
-alien_3 = Alien("assets/alien.png", 200, 100)
-alien_4 = Alien("assets/alien.png", 250, 100)
-
-aliens = [alien_1, alien_2, alien_3, alien_4]
 
 class Game:
+    pressed_right = False
+    pressed_left = False
+    player1 = Player("assets/spaceship.png", 700, 250)
+    
+    alien_1 = Alien("assets/alien.png", 100, 100)
+    alien_2 = Alien("assets/alien.png", 150, 100)
+    alien_3 = Alien("assets/alien.png", 200, 100)
+    alien_4 = Alien("assets/alien.png", 250, 100)
+
+    aliens = [alien_1, alien_2, alien_3, alien_4]
+    
+    pressed_right = False
+    pressed_left = False
+    
+    player_speed = 2
+    
     def __init__(self, screen_height, screen_width, screen_title):
         self.screen_height = screen_height
         self.screen_width = screen_width
@@ -68,17 +75,33 @@ class Game:
                 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RIGHT:
-                        pass
+                       self.pressed_right = True
                         
-            for alien in aliens:
+                    if event.key == pygame.K_LEFT:
+                        self.pressed_left = True
+                        
+                if event.type == pygame.KEYUP:
+                    if event.key == pygame.K_RIGHT:
+                        self.pressed_right = False
+                        
+                    if event.key == pygame.K_LEFT:
+                        self.pressed_left = False
+                    
+            if self.pressed_right:
+                self.player1.move_right(self.player_speed)
+            
+            if self.pressed_left:
+                self.player1.move_left(self.player_speed)    
+            
+            for alien in self.aliens:
                 screen.blit(alien.image, (alien.get_x(), alien.get_y()))
             
-            for x in aliens:
+            for x in self.aliens:
                     if x.get_x() < 500:
                         x.move_down(0.006)
                         
                             
-            screen.blit(player1.image, (player1.get_x(), player1.get_y()))
+            screen.blit(self.player1.image, (self.player1.get_x(), self.player1.get_y()))
             
             pygame.display.flip()
         
