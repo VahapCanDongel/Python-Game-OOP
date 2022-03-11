@@ -16,10 +16,10 @@ class Charactor:
     def move_left(self, speed):
         self.x -= speed
         
-    def move_up(self, speed):
+    def move_down(self, speed):
         self.y += speed
     
-    def move_down(self, speed):
+    def move_up(self, speed):
         self.y -= speed
         
     def get_x(self):
@@ -60,7 +60,6 @@ class Game:
     
     def run(self, isGameRunning = True):
         while isGameRunning:
-
             screen.fill((20, 22, 41))
             
             for event in pygame.event.get():
@@ -71,12 +70,13 @@ class Game:
                     if event.key == pygame.K_RIGHT:
                         pass
                         
-        
             for alien in aliens:
                 screen.blit(alien.image, (alien.get_x(), alien.get_y()))
-
-               
-                            
+            
+            for x in aliens:
+                    if x.get_x() < 500:
+                        x.move_down(0.006)
+                        
                             
             screen.blit(player1.image, (player1.get_x(), player1.get_y()))
             
