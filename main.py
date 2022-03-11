@@ -38,12 +38,15 @@ class Player(Charactor):
     def __init__(self, image, x, y):
         super().__init__(image, x, y)
 
-
-
-
-alien1 = Alien("assets/alien.png", 100, 100)
 player1 = Player("assets/spaceship.png", 700, 250)
 
+
+alien_1 = Alien("assets/alien.png", 100, 100)
+alien_2 = Alien("assets/alien.png", 150, 100)
+alien_3 = Alien("assets/alien.png", 200, 100)
+alien_4 = Alien("assets/alien.png", 250, 100)
+
+aliens = [alien_1, alien_2, alien_3, alien_4]
 
 class Game:
     def __init__(self, screen_height, screen_width, screen_title):
@@ -59,23 +62,25 @@ class Game:
         while isGameRunning:
 
             screen.fill((20, 22, 41))
-
+            
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    isGameRunning = False 
-                    
+                    isGameRunning = False
+                
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RIGHT:
-                        alien1.move_right(4)
+                        pass
                         
-            screen.blit(alien1.image, (alien1.get_x(), alien1.get_y()))        
+        
+            for alien in aliens:
+                screen.blit(alien.image, (alien.get_x(), alien.get_y()))
+
+               
+                            
+                            
             screen.blit(player1.image, (player1.get_x(), player1.get_y()))
-
-
+            
             pygame.display.flip()
-        
-        
-        
         
 if __name__ == "__main__":
     game = Game(1000, 500, "Game Title")
