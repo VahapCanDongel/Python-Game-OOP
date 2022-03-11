@@ -42,14 +42,18 @@ class Player(Charactor):
 class Game:
     pressed_right = False
     pressed_left = False
-    player1 = Player("assets/spaceship.png", 700, 250)
+    player1 = Player("assets/spaceship.png", 500, 400)
     
     alien_1 = Alien("assets/alien.png", 100, 100)
     alien_2 = Alien("assets/alien.png", 150, 100)
     alien_3 = Alien("assets/alien.png", 200, 100)
     alien_4 = Alien("assets/alien.png", 250, 100)
-
-    aliens = [alien_1, alien_2, alien_3, alien_4]
+    alien_5 = Alien("assets/alien.png", 300, 100)
+    alien_6 = Alien("assets/alien.png", 350, 100)
+    alien_7 = Alien("assets/alien.png", 400, 100)
+    alien_8 = Alien("assets/alien.png", 450, 100)
+    
+    aliens = [alien_1,alien_2,alien_3,alien_4,alien_5,alien_6,alien_7,alien_8]
     
     pressed_right = False
     pressed_left = False
@@ -80,6 +84,7 @@ class Game:
                     if event.key == pygame.K_LEFT:
                         self.pressed_left = True
                         
+
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_RIGHT:
                         self.pressed_right = False
